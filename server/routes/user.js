@@ -9,7 +9,8 @@ const {
   deleteUser,
   loginUser,
   createUser,
-  usersList
+  usersList,
+  logoutUser
 } = require("../controller/userController")
 
 
@@ -43,10 +44,13 @@ router.delete('/users/:id', authentication.authenticateJWT, deleteUser);
 // Rota para criar uma nova conta de usuário
 router.post('/signup',  createUser);
 
-  // Rota para fazer login
+// Rota para fazer login
 router.post('/login', loginUser);
 
-  //Rota para pegar todos os usuários
+// Rota para fazer logout
+router.post('/logout', logoutUser);
+
+//Rota para pegar todos os usuários
 router.get('/users', authentication.authenticateJWT, usersList);
 
 module.exports = router;

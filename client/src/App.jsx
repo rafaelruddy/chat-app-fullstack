@@ -13,7 +13,6 @@ function App() {
 
   return (
     <Router basename='/Chat-App'>
-
       <Routes>
         <Route path="/" element={<Login socket={socket}/>} />
         <Route path="/signup" element={<SignUp socket={socket}/>} />

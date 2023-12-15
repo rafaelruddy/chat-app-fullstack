@@ -25,7 +25,7 @@ const ChatFooter = ({ socket, info, novo }) => {
       <form className="form" onSubmit={handleSendMessage}>
         <input
           type="text"
-          placeholder="Write message"
+          placeholder="Digite aqui..."
           className="message"
           value={message}
           onChange={(e) => setMessage(e.target.value)}

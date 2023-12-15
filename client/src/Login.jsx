@@ -38,7 +38,7 @@ function Login({ socket }) {
                 },
                 withCredentials: true
               }
-              )
+            )
             
             console.log(JSON.stringify(response?.data))
             

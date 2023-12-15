@@ -35,15 +35,19 @@
   border: none;
   border-radius: 5px;
 }
+
 .chat {
   width: 100%;
   height: 100vh;
   display: flex;
   align-items: center;
 }
+
 .chat__sidebar {
   height: 100%;
   background-color: #212121;
+  display: flex;
+  flex-direction: column;
   flex: 0.2;
   padding: 20px;
   border-right: 1px solid #fdfdfd;
@@ -57,11 +61,16 @@
   font-weight: 400 !important;
 }
 
-
 .chat__main {
   height: 100%;
   flex: 0.8;
 }
+
+.chat__apptitle {
+  display: flex;
+  justify-content: space-between;
+}
+
 .chat__header {
   margin: 30px 0 20px 0;
 }
@@ -116,6 +125,7 @@
   cursor: pointer;
   border-radius: 4px;
   color: #eae3d2;
+  margin-bottom: 10px;
   margin-top: auto;
 }
 .message__container {
@@ -192,4 +202,44 @@
   bottom: 50px;
   font-size: 13px;
   font-style: italic;
+}
+
+/* MODAL */
+/* Background effect. It covers the entire site */
+.modal {
+    background-color: rgb(0,0,0);  
+    background-color: rgba(0,0,0,0.4); 
+    z-index: 1; /* Overlay effect: positioned over other containers */
+    width: 100vw; /* Full width */
+    height: 100vh; /* Full height */
+    position: absolute; /* Fix position on the top-left corner*/
+    top: 0;
+    left: 0;
+    overflow: auto; /* Enable scroll if needed */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+/* Modal content */
+.modal-content {
+    background-color: #212121;
+    width: 70%; /* Width in proportion to its parent container*/
+    max-width: 640px; /* Max width where it stops expanding */
+    height: 70%; /* Height in proportion to its parent container */
+    padding: 10px;
+    border: 1px solid white;
+    border-radius: 20px; /* Optional. Rounds container corners */
+}
+/* Close button */
+.close {
+   color: #aaaaaa;
+   float: right; /* Positioned to the right of the parent container whichever size it is */
+   font-size: 25px;
+   font-weight: bold;
+}
+.close:hover, 
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
 }

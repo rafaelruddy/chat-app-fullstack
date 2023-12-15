@@ -4,7 +4,7 @@ import ChatBody from './ChatBody';
 import ChatFooter from './ChatFooter';
 import axios from './api/axios';
 import { useParams } from 'react-router-dom';
-
+import Modal from './Modal';
 const ChatPage = ({ socket }) => {
   const [messages, setMessages] = useState([]);
   const [typingStatus, setTypingStatus] = useState('');
@@ -15,15 +15,14 @@ const ChatPage = ({ socket }) => {
   const params = useParams();
   const [newMessage, setNewMessage] = useState([])
   const id = params.id;
+  const [modal, setModal] = useState(false);
 
   useEffect(() => {
     async function getContacts() {
         try{
-
             const response = await axios.get('/chat/private/getAll', {
               withCredentials:true
             });
-            // console.log(JSON.stringify(response?.data))
             setContacts(response?.data)
             
         }catch(err) {
@@ -41,9 +40,7 @@ const ChatPage = ({ socket }) => {
 
 
   useEffect(()=> {
-
     async function getInfoFromChat() {
-
       try{
         const response = await axios.get(`/chat/private/getInfo/${id}`, {
           withCredentials: true
@@ -62,10 +59,7 @@ const ChatPage = ({ socket }) => {
 
     }
     getInfoFromChat();
-    
   }, [id]);
-    
-
 
   useEffect(() => {
     socket.on('messageResponse', (data) => setMessages([...messages, data]));
@@ -93,20 +87,28 @@ const ChatPage = ({ socket }) => {
 
     socket.on('typingResponse', (data) => setTypingStatus(data));
   }, [socket]);
+    
+  const selectModal = (info) => {
+    setModal(!modal)
+  }
 
   return (
     
     <div className="chat">
-      <ChatBar socket={socket} contacts={contacts} />
+      <ChatBar socket={socket} contacts={contacts} selectModal={selectModal} />
       <div className="chat__main">
       <ChatBody
           messages={messages}
           typingStatus={typingStatus}
           lastMessageRef={lastMessageRef}
           info = {info}
-        />
-        <ChatFooter socket={socket} info = {info} novo = {setNewMessage} />
+      />
+      <ChatFooter socket={socket} info = {info} novo = {setNewMessage} />
       </div>
+      <Modal 
+        displayModal={modal}
+        closeModal={selectModal}
+      />
     </div>
   );
 };
