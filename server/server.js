@@ -52,9 +52,8 @@ io.on("connection", function(socket){
 
 			const chatId = data.chatId;
 		
-			const messages = await Message.find({ chat: chatId });
-			// console.log(messages)
-			socket.broadcast.emit("update", data._id + " joined the conversation");
+			const messages = await Message.find({ chat: chatId}).sort({ timestamp: -1 });
+			// socket.broadcast.emit("update", data._id + " joined the conversation");
 			
 			io.to(data.chatId + users[data.sender._id]).emit("setup-chat", messages);
 		} catch (err){

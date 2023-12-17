@@ -40,7 +40,6 @@
   width: 100%;
   height: 100vh;
   display: flex;
-  align-items: center;
 }
 
 .chat__sidebar {
@@ -62,8 +61,8 @@
 }
 
 .chat__main {
-  height: 100%;
-  flex: 0.8;
+  height: 100vh;
+  flex: 1;
 }
 
 .chat__apptitle {

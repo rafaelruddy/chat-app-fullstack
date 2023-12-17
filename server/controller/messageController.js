@@ -7,13 +7,12 @@ const Message = require('../models/message');
 allChats = async(req, res) => {
     try{
         const chatId = req.userId;
-        // Busque os chats em que o usuário está participando
         const messages = await Message.find({ chat: chatId });
   
         if(messages){
+        console.log(messages)
           return res.status(201).json(messages);
         }
-        // Retorne os chats encontrados como resposta
     }
     catch (error) {
         console.error('Erro ao criar nova mensagem:', error);

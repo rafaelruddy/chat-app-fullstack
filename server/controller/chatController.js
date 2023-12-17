@@ -51,6 +51,7 @@ getAllChats = async (req, res) => {
             chat.receiver = chat.participants.find(participant => participant._id != userId);  
         }
         
+
         // return chats with all the info needed
         
         return res.status(201).json(chats);
