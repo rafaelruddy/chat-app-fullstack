@@ -42,6 +42,7 @@ const ChatFooter = ({ socket, info, setNewMessage }) => {
           style={{
             backgroundColor: "white",
           }}
+          value={message}
           onChange={(event) => {
             setMessage(event.target.value);
           }}
